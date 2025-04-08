@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
   if (registerForm) {
     registerForm.addEventListener('submit', function(e) {
       e.preventDefault();
-      
+
       // Get form inputs
       const name = document.getElementById('register-name').value;
       const email = document.getElementById('register-email').value;
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
         showMessage(messageContainer, 'All fields are required', 'danger');
         return;
       }
-      
+
       if (password !== confirmPassword) {
         document.getElementById('confirm-password').classList.add('is-invalid');
         showMessage(messageContainer, 'Passwords do not match', 'danger');
@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
       // Store user in localStorage using email as key
       const user = { name, email, password };
       localStorage.setItem(email, JSON.stringify(user));
-      
+
       showMessage(messageContainer, 'Registration successful!', 'success');
       setTimeout(() => {
         registerForm.reset();
@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('register-email').addEventListener('input', function() {
       this.classList.remove('is-invalid');
     });
-    
+
     document.getElementById('confirm-password').addEventListener('input', function() {
       this.classList.remove('is-invalid');
     });
@@ -80,12 +80,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
       // Get user from localStorage
       const user = getUserByEmail(email);
-      
+
       // Check credentials
       if (user && user.password === password) {
         sessionStorage.setItem('currentUser', JSON.stringify(user));
         showMessage(messageContainer, 'Login successful!', 'success');
-        
+
         setTimeout(() => {
           window.location.href = 'dashboard.html';
         }, 1000);
